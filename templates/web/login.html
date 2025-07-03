@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+<div class="container bg-light shadow-md p-5 form-layout">
+    <h1>Login</h1>
+    <hr>
+    <form method="POST" autocomplete="off">
+        {% csrf_token %}
+        
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-outline-primary">Login</button>
+    </form>
+</div>
+
+{% endblock %}
