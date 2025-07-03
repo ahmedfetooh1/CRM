@@ -1,4 +1,41 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<h4 style="padding-left: 70px;">Welcome to the dashboard page <b>{{user}}!</b></h4>
+<hr style="border: 1px solid #000; margin: 20px 50px;" >
+<div style="padding-left: 50px;">
+    <a href="{% url 'createrecord' %}" class="btn btn-outline-primary">Create Record</a>
+</div>
+<hr style="border: 1px solid #000; margin: 20px 50px;" >
+<div class="text-center " style="padding-left: 50px;">
+    <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address</th>
+      <th scope="col">Tall</th>
+      <th scope="col">Weight</th>
+      <th scope="col">Created_at</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in record %}
+    <tr>
+      <td>{{user.id}}</td>
+      <td>{{user.first_name}}</td>
+      <td>{{user.last_name}}</td>
+      <td>{{user.category}}</td>
+      <td>{{user.phone}}</td>
+      <td>{{user.address}}</td>
+      <td>{{user.tall}}</td>
+      <td>{{user.weight}}</td>
+      <td>{{user.create_at}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
 {% endblock %}
