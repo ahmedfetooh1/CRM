@@ -1,4 +1,4 @@
-from django.shortcuts import render ,redirect
+from django.shortcuts import render ,redirect , get_object_or_404
 from .forms import CreateUserForm , LoginForm ,CreateRecordForm
 from django.contrib.auth import authenticate , login , logout
 from django.contrib.auth.decorators import login_required
@@ -73,3 +73,13 @@ def create_record(request):
         'form':form
     }
     return render(request,'web/create-record.html',context)
+
+@login_required(login_url='login')
+def view_record(request,id):
+    all_records = get_object_or_404(Record ,id=id)
+
+    context = {
+        'record':all_records ,
+    }
+
+    return render(request,'web/view_record.html',context)
