@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+<div class="container bg-light shadow-md p-5 form-layout">
+    <h1>Update Record</h1>
+    <hr>
+    <form method="POST" autocomplete="off">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <div class="text-center">
+            <button type="submit" class="btn btn-outline-dark">Save Updates</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

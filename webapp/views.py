@@ -1,5 +1,5 @@
 from django.shortcuts import render ,redirect , get_object_or_404
-from .forms import CreateUserForm , LoginForm ,CreateRecordForm
+from .forms import CreateUserForm , LoginForm ,CreateRecordForm ,UpdateRecordForm
 from django.contrib.auth import authenticate , login , logout
 from django.contrib.auth.decorators import login_required
 from .models import Record
@@ -83,3 +83,17 @@ def view_record(request,id):
     }
 
     return render(request,'web/view_record.html',context)
+
+def update_record(request,record_id):
+    record = get_object_or_404(Record,id=record_id)
+    form = UpdateRecordForm(instance=record)
+    if request.method == "POST":
+        form = UpdateRecordForm(request.POST,instance=record)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+        
+    context ={
+        'form':form
+    }
+    return render(request,'web/update-record.html',context)

@@ -2,13 +2,15 @@
 {% block content %}
 <div class="cart" style="padding-left: 100px; padding-top: 100px;">
     <h3>
-        <p><strong>ID :</strong>{{record.id}}</p>
-        <p><strong>Full name</strong>{{record.first_name|capfirst}}</p>
-        <p><strong>Category</strong>{{record.category}}</p>
-        <p><strong>Address</strong>{{record.address}}</p>
-        <p><strong>Tall</strong>{{record.tall}}</p>
-        <p><strong>Weight</strong>{{record.weight}}</p>
-        <p><strong>Creatioin date</strong>{{record.create_at}}</p>
+        <p><strong>ID: </strong>{{record.id}}</p>
+        <p><strong>Full name: </strong>{{record.first_name|capfirst}} {{record.last_name}}</p>
+        <p><strong>Category: </strong>{{record.category}}</p>
+        <p><strong>Address: </strong>{{record.address}}</p>
+        <p><strong>Tall: </strong>{{record.tall}}</p>
+        <p><strong>Weight: </strong>{{record.weight}}</p>
+        <p><strong>Creatioin date: </strong>{{record.create_at}}</p>
+        <a href="{% url 'record_update' record.id %}" class="btn btn-outline-dark btn-sm">Update Record</a>
+
     </h3>
 </div>
 
