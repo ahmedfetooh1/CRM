@@ -84,6 +84,9 @@ def view_record(request,id):
 
     return render(request,'web/view_record.html',context)
 
+
+
+@login_required(login_url='login')
 def update_record(request,record_id):
     record = get_object_or_404(Record,id=record_id)
     form = UpdateRecordForm(instance=record)
@@ -97,3 +100,10 @@ def update_record(request,record_id):
         'form':form
     }
     return render(request,'web/update-record.html',context)
+
+
+@login_required(login_url='login')
+def delete_record(request , record_id):
+    record = get_object_or_404(Record,id = record_id)
+    record.delete()
+    return redirect('dashboard')

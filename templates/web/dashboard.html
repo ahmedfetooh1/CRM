@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h4 style="padding-left: 70px;">Welcome to the dashboard page <b>{{user}}!</b></h4>
+<h4 style="padding-left: 70px;">Welcome to the dashboard page <b>{{record}}!</b></h4>
 <hr style="border: 1px solid #000; margin: 20px 50px;" >
 <div style="padding-left: 50px;">
     <a href="{% url 'createrecord' %}" class="btn btn-outline-primary">Create Record</a>
@@ -23,21 +23,31 @@
     </tr>
   </thead>
   <tbody>
-    {% for user in record %}
+    {% if record %}
+    {% for record in record %}
     <tr>
-      <td>{{user.id}}</td>
-      <td>{{user.first_name}}</td>
-      <td>{{user.last_name}}</td>
-      <td>{{user.category}}</td>
-      <td>{{user.phone}}</td>
-      <td>{{user.address}}</td>
-      <td>{{user.tall}}</td>
-      <td>{{user.weight}}</td>
-      <td>{{user.create_at}}</td>
-      <td><a href="{% url 'view_record' user.id %}" class="btn btn-outline-primary btn-sm">View</a></td>
+      <td>{{record.id}}</td>
+      <td>{{record.first_name}}</td>
+      <td>{{record.last_name}}</td>
+      <td>{{record.category}}</td>
+      <td>{{record.phone}}</td>
+      <td>{{record.address}}</td>
+      <td>{{record.tall}}</td>
+      <td>{{record.weight}}</td>
+      <td>{{record.create_at}}</td>
+      <td><a href="{% url 'view_record' record.id %}" class="btn btn-outline-primary btn-sm">View</a></td>
 
     </tr>
     {% endfor %}
+    {% else %}
+    <tr>
+      <td colspan="110" class="text-center">
+        <div class="alert alert-warning" role="alert">
+            You don't have any record yet.
+        </div>
+      </td>
+    </tr>
+    {% endif %}
   </tbody>
 </table>
 </div>
