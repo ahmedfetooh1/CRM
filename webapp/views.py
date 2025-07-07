@@ -3,6 +3,8 @@ from .forms import CreateUserForm , LoginForm ,CreateRecordForm ,UpdateRecordFor
 from django.contrib.auth import authenticate , login , logout
 from django.contrib.auth.decorators import login_required
 from .models import Record
+from django.db.models import Q
+import logging
 # Create your views here.
 def index(request):
     return render(request , 'web/index.html')
@@ -107,3 +109,19 @@ def delete_record(request , record_id):
     record = get_object_or_404(Record,id = record_id)
     record.delete()
     return redirect('dashboard')
+
+
+logger = logging.Logger(__name__)
+@login_required(login_url='login')
+def search(request):
+    qeury = request.GET.get('qeury')
+    results = []
+    try :
+        if qeury :
+            results = Record.objects.filter(Q(first_name__icontains = qeury)|Q(id__icontains=qeury))
+    except Exception as e :
+        logger.error('Error during search %s', e) 
+    return render(request , 'web/search.html',context={
+        'results':results ,
+        'qeury':qeury,
+    })

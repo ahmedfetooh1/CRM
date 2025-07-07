@@ -1,19 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-<h4 style="padding-left: 70px;">Welcome to the dashboard page <b>{{user}}!</b></h4>
-<hr style="border: 1px solid #000; margin: 20px 50px;" >
-<div style="padding-left: 50px;">
-    <a href="{% url 'createrecord' %}" class="btn btn-outline-primary">Create Record</a>
-</div>
-<hr style="border: 1px solid #000; margin: 20px 50px;" >
-<div class="text-center" style="margin: 0px 100px;">
-  <form action="{% url 'search' %}" method="GET" >
-    <input type="search" name="qeury" placeholder="Write something here" class="form-control mr-sm-2">
-    &nbsp;
-    <button type="submit" class="btn btn-outline-dark w-100 btn-block p-2">Search</button>
-  </form>
-<hr style="border: 1px solid #000; margin: 20px 5px;" >
-</div>
 <div class="text-center " style="padding-left: 50px;">
     <table class="table">
   <thead class="thead-dark">
@@ -31,8 +17,8 @@
     </tr>
   </thead>
   <tbody>
-    {% if record %}
-    {% for record in record %}
+    {% if results %}
+    {% for record in results %}
     <tr>
       <td>{{record.id}}</td>
       <td>{{record.first_name}}</td>
@@ -51,7 +37,7 @@
     <tr>
       <td colspan="110" class="text-center">
         <div class="alert alert-warning" role="alert">
-            You don't have any record yet.
+            Not Found "{{qeury}}"
         </div>
       </td>
     </tr>

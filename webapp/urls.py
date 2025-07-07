@@ -11,4 +11,5 @@ urlpatterns = [
     path('view/<int:id>/',views.view_record,name='view_record'),
     path('update/<int:record_id>',views.update_record,name='record_update'),
     path('delete/<int:record_id>',views.delete_record,name='delete_record'),
+    path('serach/',views.search,name='search')
 ]
