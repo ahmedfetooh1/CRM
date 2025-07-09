@@ -10,7 +10,7 @@
         <p><strong>Weight: </strong>{{record.weight}}</p>
         <p><strong>Creatioin date: </strong>{{record.create_at}}</p>
         <a href="{% url 'record_update' record.id %}" class="btn btn-outline-dark btn-sm">Update Record</a>
-        <a href="{% url 'delete_record' record.id %}" class="btn btn-outline-danger btn-sm">Delete Record</a>
+        <a href="{% url 'delete_record' record.id %}" onclick="return confirm('Are you sure to delete this record?')" class="btn btn-outline-danger btn-sm">Delete Record</a>
 
     </h3>
 </div>

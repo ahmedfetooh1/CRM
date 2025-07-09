@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Record
 from django.db.models import Q
 import logging
+from django.contrib import messages
+
 # Create your views here.
 def index(request):
     return render(request , 'web/index.html')
@@ -15,6 +17,7 @@ def register(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Registeration is successfully.")
             return redirect('login')
     else:
         form = CreateUserForm()
@@ -37,6 +40,7 @@ def my_login(request):
 
         if user is not None :
             login(request,user)
+            messages.success(request, "Login is successfully.")
             return redirect('dashboard')
     else:
         form = LoginForm()
@@ -56,9 +60,7 @@ def dashboard(request):
 
 
 
-def my_logout(request):
-    logout(request)
-    return redirect('login')
+
 
 
 def create_record(request):
@@ -67,6 +69,7 @@ def create_record(request):
         form = CreateRecordForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Record is created.")
             return redirect('dashboard')
     else :
         form = CreateRecordForm()
@@ -96,6 +99,7 @@ def update_record(request,record_id):
         form = UpdateRecordForm(request.POST,instance=record)
         if form.is_valid():
             form.save()
+            messages.success(request, "Record is updated.")
             return redirect('dashboard')
         
     context ={
@@ -108,6 +112,7 @@ def update_record(request,record_id):
 def delete_record(request , record_id):
     record = get_object_or_404(Record,id = record_id)
     record.delete()
+    messages.success(request, "Record is deleted.")
     return redirect('dashboard')
 
 
@@ -125,3 +130,8 @@ def search(request):
         'results':results ,
         'qeury':qeury,
     })
+
+def my_logout(request):
+    logout(request)
+    messages.success(request, "Logout is successfully.")
+    return redirect('login')

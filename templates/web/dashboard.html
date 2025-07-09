@@ -1,20 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
-<h4 style="padding-left: 70px;">Welcome to the dashboard page <b>{{user}}!</b></h4>
-<hr style="border: 1px solid #000; margin: 20px 50px;" >
-<div style="padding-left: 50px;">
+<h4 style="padding-left: 100px; padding-top: 20px;">Welcome to the dashboard page <b>{{user}}!</b></h4>
+<hr style="border: 1px solid #000; margin: 20px 100px;" >
+<div style="padding-left: 100px;">
     <a href="{% url 'createrecord' %}" class="btn btn-outline-primary">Create Record</a>
 </div>
-<hr style="border: 1px solid #000; margin: 20px 50px;" >
+<hr style="border: 1px solid #000; margin: 20px 100px;" >
+{% include 'parts/alerts.html' %}
+
 <div class="text-center" style="margin: 0px 100px;">
   <form action="{% url 'search' %}" method="GET" >
     <input type="search" name="qeury" placeholder="Write something here" class="form-control mr-sm-2">
     &nbsp;
     <button type="submit" class="btn btn-outline-dark w-100 btn-block p-2">Search</button>
   </form>
-<hr style="border: 1px solid #000; margin: 20px 5px;" >
+<hr style="border: 1px solid #000; margin: 20px 0px;" >
 </div>
-<div class="text-center " style="padding-left: 50px;">
+<div class="text-center " style="padding-left: 100px;">
     <table class="table">
   <thead class="thead-dark">
     <tr>
