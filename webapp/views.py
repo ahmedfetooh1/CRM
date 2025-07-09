@@ -135,3 +135,6 @@ def my_logout(request):
     logout(request)
     messages.success(request, "Logout is successfully.")
     return redirect('login')
+
+def custom_page_not_found(request,exception):
+    return render(request,'web/404.html',status=404)

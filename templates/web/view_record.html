@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="cart" style="padding-left: 100px; padding-top: 100px;">
+<div class="text-center" style="padding-top: 20px;">
+    <h1><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{record.first_name|capfirst}} {{record.last_name}}</h1>
+</div>
+<hr style="border: 1px solid #000; margin: 30px 180px;" >
+<div class="cart" style="padding-left: 100px; padding-top: 20px;">
     <h3>
         <p><strong>ID: </strong>{{record.id}}</p>
         <p><strong>Full name: </strong>{{record.first_name|capfirst}} {{record.last_name}}</p>
@@ -9,8 +13,8 @@
         <p><strong>Tall: </strong>{{record.tall}}</p>
         <p><strong>Weight: </strong>{{record.weight}}</p>
         <p><strong>Creatioin date: </strong>{{record.create_at}}</p>
-        <a href="{% url 'record_update' record.id %}" class="btn btn-outline-dark btn-sm">Update Record</a>
-        <a href="{% url 'delete_record' record.id %}" onclick="return confirm('Are you sure to delete this record?')" class="btn btn-outline-danger btn-sm">Delete Record</a>
+        <a href="{% url 'record_update' record.id %}" class="btn btn-outline-dark btn-sm">Update Record <i class="fa fa-pencil" aria-hidden="true"></i></a>
+        <a href="{% url 'delete_record' record.id %}" onclick="return confirm('Are you sure to delete this record?')" class="btn btn-outline-danger btn-sm">Delete Record <i class="fa fa-trash" aria-hidden="true"></i></a>
 
     </h3>
 </div>
